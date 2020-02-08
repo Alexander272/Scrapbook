@@ -1,0 +1,41 @@
+<nav>
+    <div class="header__nav">
+        <a href="/" class="header__brand-logo">Scrapbook</a>
+        <div class="header__bars">
+            <i class="fal fa-bars"></i>
+        </div>
+        <div class="header__container">
+            <ul class="header__menu">
+
+                {{#if isHome}}
+                    <li class="header__item"><a href="/" class="header__link header__active">Главная</a></li>
+                {{else}}
+                    <li class="header__item"><a href="/" class="header__link">Главная</a></li>
+                {{/if}}
+
+                {{#if isAuth}}
+                    {{#if isAdd}}
+                        <li class="header__item"><a href="/add" class="header__link header__active">Добавить фото</a></li>
+                    {{else}}
+                        <li class="header__item"><a href="/add" class="header__link">Добавить фото</a></li>
+                    {{/if}}
+
+                    {{#if isAlbums}}
+                        <li class="header__item"><a href="/albums" class="header__link header__active">Мои альбомы</a></li>
+                    {{else}}
+                        <li class="header__item"><a href="/albums" class="header__link">Мои альбомы</a></li>
+                    {{/if}}
+                    
+                    <li class="header__item"><a href="/auth/logout" class="header__link">Выйти</a></li>
+                {{else}}
+                    {{#if isLogin}}  
+                        <li class="header__item"><a href="/auth/login#login" class="header__link header__active">Войти</a></li>
+                    {{else}}
+                        <li class="header__item"><a href="/auth/login#login" class="header__link">Войти</a></li>
+                    {{/if}}
+                {{/if}}
+
+            </ul>
+        </div>
+    </div>
+</nav>

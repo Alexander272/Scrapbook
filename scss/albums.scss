@@ -1,0 +1,152 @@
+.albums {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+
+    &__album {
+        flex-basis: 31%;
+        margin: 10px 1%;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+        border-radius: 4px;
+        overflow: hidden;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        transform: scale(1);
+        transition: all .3s ease-in-out;
+
+        &:hover {
+            transform: scale(1.07);
+
+            .albums__name {
+                height: 80px;
+            }
+
+            .albums__pencil, .albums__trash {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+    }
+
+    &__name {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        left: 0;
+        height: 40px;
+        width: 100%;
+        background: #000000a8;
+        border-top: 2px solid #2fd9ef;
+        transition: all .3s ease-in-out;
+    }
+
+    &__text {
+        color: $white;
+        font-weight: bold;
+        text-decoration: none;
+        text-transform: capitalize;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__icon {
+        width: 30px;
+        height: 30px;
+        display: flex!important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__pencil, &__trash {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        border-radius: 50%;
+        background-color: #000000a8;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        font-size: 18px;
+        color: #fff;
+        box-shadow: 0px 0px 5px #fff;
+        cursor: pointer;
+        opacity: 0;
+        transition: all .3s ease-in-out;
+    }
+
+    &__trash {
+        top: 45px;
+    }
+
+    &__add {
+        @extend .albums__album;
+        align-items: center;
+        cursor: pointer;
+
+        &-icon {
+            font-size: 72px;
+            color: #fff;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #00bcd4;
+            transition: all .3s ease-in;
+        }
+
+        &-form {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            box-sizing: border-box;
+            background: #e8e9ea;
+        }
+
+        &-close {
+            @extend .modal-close;
+        }
+
+        &-btn {
+            @extend .modal-btn;
+        }
+    }
+}
+
+@media (max-width: 930px) {
+    .albums {
+        &__album {
+            flex-basis: 43%;
+        }
+    }
+}
+
+@media (max-width: 660px) {
+    .albums {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .albums {
+        &__album {
+            flex-basis: 98%;
+        }
+    }
+}

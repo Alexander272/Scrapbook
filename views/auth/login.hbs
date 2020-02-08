@@ -1,0 +1,110 @@
+<div class="auth">
+    <ul class="auth__tabs">
+        <li class="auth__tab"><a class="auth__link auth__active" href="#login">Войти</a></li>
+        <li class="auth__tab"><a class="auth__link" href="#register">Регистрация</a></li>
+    </ul>
+    <div id="login" class="auth__login">
+        {{#if loginError}}
+            <p class="alert">{{loginError}}</p>
+        {{/if}}
+        {{!-- <h1>Войти</h1> --}}
+        <form action="/auth/login" method="POST">
+            <div class="auth__input-field">
+                <input 
+                    id="email" 
+                    name="email" 
+                    type="email" 
+                    class="validate" 
+                    {{#if loginData}} value="{{loginData.[0].email}}" {{/if}}
+                    required
+                >
+                <label for="email">Email</label>
+                <span class="helper-text" data-error="Введите корректный email"></span>
+            </div>
+
+            <div class="auth__input-field">
+                <input 
+                    id="password" 
+                    name="password" 
+                    type="password" 
+                    class="validate" 
+                    {{#if loginData}} value="{{loginData.[0].password}}" {{/if}}
+                    required
+                >
+                <label for="password">Пароль</label>
+                <span class="helper-text" data-error="Введите корректный пароль"></span>
+            </div>
+
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+
+            <div class="auth__btns">
+                <button class="auth__btn" type="submit">Войти</button>
+                <p class="auth__reset"><a href="/auth/reset">Забыли пароль?</a></p>
+            </div>
+            
+        </form>
+    </div>
+    <div id="register" class="auth__register">
+        {{#if registerError}}
+            <p class="alert">{{registerError}}</p>
+        {{/if}}
+        {{!-- <h1>Создать аккаунт</h1> --}}
+        <form action="/auth/register" method="POST">
+            <div class="auth__input-field">
+                <input 
+                    id="name" 
+                    name="name" 
+                    type="text" 
+                    class="validate" 
+                    {{#if registerData}} value="{{registerData.[0].name}}" {{/if}}
+                    required
+                >
+                <label for="name">Логин</label>
+                <span class="helper-text" data-error="Введите логин"></span>
+            </div>
+
+            <div class="auth__input-field">
+                <input 
+                    id="remail" 
+                    name="email" 
+                    type="email" 
+                    class="validate" 
+                    {{#if registerData}} value="{{registerData.[0].email}}" {{/if}}
+                    required
+                >
+                <label for="remail">Email</label>
+                <span class="helper-text" data-error="Введите email"></span>
+            </div>
+
+            <div class="auth__input-field">
+                <input 
+                    id="rpassword" 
+                    name="password" 
+                    type="password" 
+                    class="validate"
+                    {{#if registerData}} value="{{registerData.[0].password}}" {{/if}}
+                    required
+                >
+                <label for="rpassword">Пароль</label>
+                <span class="helper-text" data-error="Введите пароль"></span>
+            </div>
+
+            <div class="auth__input-field">
+                <input 
+                    id="confirm" 
+                    name="confirm" 
+                    type="password" 
+                    class="validate"
+                    {{#if registerData}} value="{{registerData.[0].confirm}}" {{/if}}
+                    required
+                >
+                <label for="confirm">Повторите пароль</label>
+                <span class="helper-text" data-error="Пароли не совпадают"></span>
+            </div>
+
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+
+            <button class="auth__btn" type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>

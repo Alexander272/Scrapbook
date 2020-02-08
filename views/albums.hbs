@@ -1,0 +1,84 @@
+<h1 class="title">Мои альбомы</h1>
+<div class="blackout"></div>
+<div class="albums">
+    <div class="albums__add">
+        <div class="albums__add-icon">
+            <i class="fal fa-book-open"></i>
+            {{!-- <img src="/img/svg.svg" alt=""> --}}
+        </div>
+        <form action="/albums/add" method="POST" class="albums__add-form">
+            <div class="modal-header">
+                <h2 class="modal-title">Создать альбом</h2>
+            </div>
+            <input class="modal-input" id="title" name="name" type="text" placeholder="Введите название альбома" required>
+            <input class="modal-toggle-input" id="src" name="imageSrc" type="text" placeholder="Введите URL-адресс превью">
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+            <div class="modal-btns">
+                <button class="albums__add-btn" type="submit">Создать</button>
+                <button class="albums__add-btn">Отмена</button>
+            </div>
+        </form>
+    </div>
+    {{#if albums.length}}
+        {{#each albums}}
+            <div class="albums__album" data-id="{{@index}}">
+                <div class="albums__pencil">
+                    <i class="albums__icon fal fa-pencil" data-update="{{name}}"></i>
+                </div>
+                <div class="albums__trash">
+                    <i class="albums__icon fal fa-trash-alt" data-name="{{name}}"></i>
+                </div>
+                {{#if previewImg}}
+                    <img class="albums__img" src="{{previewImg}}" alt="{{name}}">
+                {{else}}
+                    <img class="albums__img" src="https://elk21.ru/assets/images/34534535.jpg" alt="{{name}}">
+                {{/if}}
+                <div class="albums__name">
+                    <a href="/album/{{translit name}}?page=1" class="albums__text">{{name}}</a>
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+</div>
+<div class="modalRem">
+    <div class="modal-header">
+        <h2 class="modal-title">Удалить альбом</h2>
+        <span class="modalRem-close"><i class="fal fa-times"></i></span>
+    </div>
+    <div class="modal-body">
+        <p class="modal-text bold">Вы уверены, что хотите удалить этот альбом?</p>
+        <p class="modal-text">Фотографии содержащиеся в альбоме удалятся вместе с ним.</p>
+    </div>
+    <div class="modal-footer">
+        <form action="/albums/remove" method="POST">
+            <input type="hidden" name="name">
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+            <button class="modalRem-btn" type="submit">Удалить</button>
+        </form>
+        <button class="modalRem-btn">Отмена</button>
+    </div>
+</div>
+<div class="modal">
+    <div class="modal-header">
+        <h2 class="modal-title">Редактировать альбом</h2>
+        <span class="modal-close"><i class="fal fa-times"></i></span>
+    </div>
+    <div class="modal-body">
+        <form action="/albums/update" method="POST">
+            <input class="modal-input" id="name" name="name" type="text" required>
+            <div class="modal-container">
+                <div class="modal-checkbox">
+                    <input type="checkbox" class="modal-check" name="check" checked></input>
+                    <span class="modal-toggle">Сохранить превью</span>
+                </div>
+                <input class="modal-toggle-input" id="imageSrc" name="imageSrc" type="text" placeholder="Введите URL-адресс превью">
+            </div>
+            <input id="lastname" type="hidden" name="lastname">
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+            <div class="modal-btns">
+                <button class="modal-btn" type="submit">Сохранить</button>
+                <button class="modal-btn">Отмена</button>
+            </div>
+        </form>
+    </div>
+</div>

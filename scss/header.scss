@@ -1,0 +1,98 @@
+.header {
+    &__bars {
+        display: none;
+        color: #fff;
+        font-size: 30px;
+        background: $primary-color;
+    }
+
+    &__nav {
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: $primary-color;
+    }
+
+    &__brand-logo{
+        color: $white;
+        font-size: 32px;
+        text-decoration: none;
+    }
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        padding: 32px 0;
+        border-bottom: 2px solid transparent;
+    }
+
+    &__link {
+        text-decoration: none;
+        padding: 26px 40px;
+        color: $white;
+        border-bottom: 5px solid transparent;
+        transition: border-bottom-color, color 0.3s ease-in-out;
+
+        &:hover{
+            color: $accent-color;
+        }
+    }
+    
+    &__active {
+        color: $accent-color;
+        border-bottom-color: $accent-color;
+        position: relative;
+    }
+}
+
+@media (max-width: 930px) {
+    .header{
+        &__bars{
+            display: block;
+        }
+
+        &__nav {
+            position: relative;
+            padding: 25px 2rem;
+            // overflow: hidden;
+        }
+
+        &__container {
+            position: absolute;
+            right: 0;
+            top: 65px;
+            width: 300px;
+            height: 320px;
+            overflow: hidden;
+        }
+
+        &__menu {
+            position: absolute;
+            overflow: hidden;
+            right: 0;
+            top: 0;
+            flex-direction: column;
+            background: $primary-color;
+            width: 300px;
+            align-items: flex-end;
+            height: 250px;
+            clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 0);
+            transform: translateX(100%);
+            transition: transform .3s ease-in;
+            z-index: 90;
+        }
+
+        &__item {
+            padding: 10px 20px;
+        }
+
+        &__link {
+            padding: 0;
+        }
+
+        &__active {
+            border-bottom: none;
+        }
+    }
+}

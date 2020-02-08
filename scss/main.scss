@@ -1,0 +1,32 @@
+@import 'partails/fonts';
+@import 'partails/mixins';
+@import 'partails/reset';
+@import 'partails/variables';
+@import 'partails/core';
+// @import 'fontawesome/fontawesome';
+// @import 'fontawesome/light';
+
+@import 'header';
+@import 'footer';
+@import 'add';
+@import 'albums';
+@import 'album';
+@import 'auth';
+
+.home {
+    &__text {
+        text-indent: 25px;
+        line-height: 1.5;
+        text-align:justify;
+        font-style: oblique;
+        margin-bottom: 20px;
+    } 
+}
+
+@media (max-width: 660px) {
+    .home{
+        &__text {
+            margin-bottom: 10px;
+        }
+    }
+}

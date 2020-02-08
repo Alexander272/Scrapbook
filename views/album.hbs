@@ -1,0 +1,106 @@
+<h1 class="album__title">{{album.title}}</h1>
+{{#if albumError}}
+    <p class="error">{{albumError}}</p>
+{{/if}}
+<div class="blackout"></div>
+<div class="album">
+    <div class="album__item">
+        {{#if isFirstPage}}
+        <div class="album__add">
+            <div class="album__add-icons">
+                <i class="fal fa-image"></i>
+            </div>
+            <form action="/album/add/{{album.title}}" enctype="multipart/form-data" method="POST" class="album__add-form">
+                <div class="album__add-field">
+                    <input id="photo" name="photo" type="file" class="album__add-input" accept="image" multiple required>
+                    <label for="photo" class="album__add-label">
+                        <figure class="album__add-icon">
+                            <i class="fal fa-upload"></i>
+                        </figure>
+                        <span class="album__add-text">Выберите фотографии</span>
+                    </label>
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
+                    <div class="album__add-btns">
+                        <button class="album__add-btn hidden" type="submit">Добавить фотографии</button>
+                        <button class="album__add-btn">Отмена</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {{/if}}
+        {{#each album.img}}
+            <div class="album__image">
+                <img src="{{imageSrc}}" alt="{{name}}" class="album__img" data-id="{{@index}}" data-mId="{{_id}}">
+                <div class="album__check"><i class="album__check-icon fal fa-check" data-mId="{{_id}}"></i></div>
+            </div>
+        {{/each}}
+    </div>
+    <div class="album__open">
+        <span class="album__next"> <i class="fal fa-angle-double-right"></i> </span>
+        <span class="album__prev"> <i class="fal fa-angle-double-left"></i> </span>
+        <span class="album__close"> <i class="fal fa-times"></i> </span>
+        <div class="album__more">
+            <i class="fal fa-caret-circle-down"></i>
+            <div class="album__slide-menu">
+                <p id="remove" class="album__menu-item">Удалить фото</p>
+                <form class="album__menu-item" action="/album/setas/{{album.title}}" method="POST">
+                    <input class="input-id" type="hidden" name="id">
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
+                    <button class="album__menu-btn" type="submit">Установить как превью</button>
+                </form>
+                <p id="move" class="album__menu-item">Переместить в другой альбом</p>
+            </div>
+        </div>
+        <div class="album__slide1"></div>
+        <div class="album__slide2"></div>
+    </div>
+    <div class="album__linker">
+        <span class="album__circle"></span>
+        <span class="album__circle"></span>
+        <span class="album__circle"></span>
+        <span class="album__circle"></span>
+        <span class="album__circle"></span>
+        <span class="album__circle"></span>
+        <span class="album__circle"></span>
+    </div>
+    <div class="album__btns">
+        <div class="album__btn--prev {{#if album.isFirstPage}} invisibility {{/if}}">
+            <a href="/album/{{album.title}}?page={{album.prevPage}}"><i class="fal fa-arrow-alt-left"></i></a>
+        </div>
+        <div class="album__btn--next {{#if album.isFinalPage}} invisibility {{/if}}">
+            <a href="/album/{{album.title}}?page={{album.nextPage}}"><i class="fal fa-arrow-alt-right"></i></a>
+        </div>
+    </div>
+    <div class="modalRem">
+        <div class="modal-header">
+            <h2 class="modal-title">Удалить фото</h2>
+            <span class="modalRem-close"><i class="fal fa-times"></i></span>
+        </div>
+        <div class="modal-body">
+            <form action="/album/remove/{{album.title}}" method="POST">
+                <input type="hidden" name="id">
+                <input type="hidden" name="_csrf" value="{{csrf}}">
+                <div class="modal-btns">
+                    <button class="modalRem-btn" type="submit">Удалить</button>
+                    <button class="modalRem-btn">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="album__config">
+        <div class="album__icons"><i class="album__icon fal fa-cog"></i></div>
+        <div class="album__config-items">
+            <p id="some-remove" class="album__config-item">Удалить фотографии</p>
+            <p id="some-move" class="album__config-item">Переместить фотографии в другой альбом</p>
+        </div>
+    </div>
+    <div class="album__trash">
+        <i class="album__trash-icon fal fa-trash-alt"></i>
+    </div>
+    <div class="album__send">
+        <i class="album__send-icon fal fa-share-square"></i>
+    </div>
+    <div class="album__cancel">
+        <i class="album__cancel-icon fal fa-times"></i>
+    </div>
+</div>

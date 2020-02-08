@@ -1,0 +1,33 @@
+<h1 class="title">Добавить фотографии</h1>
+<div class="blackout"></div>
+{{#if error}}
+<p class="alert">{{error}}</p>
+{{/if}}
+
+<div class="add__container">
+    <form action="/add" enctype="multipart/form-data" method="POST" class="add__form">
+        <div class="add__field">
+            <input id="photo" name="photo" type="file" class="add__input" accept="image" multiple required>
+            <label for="photo" class="add__label">
+                <figure class="add__icon">
+                    <i class="fal fa-upload"></i>
+                </figure>
+                <span class="add__text">Выберите фотографии</span>
+            </label>
+        </div>
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+        <div class="add__btns">
+            <button class="add__btn hidden" type="submit">Добавить фотографии</button>
+            <button id="preview" class="add__btn hidden">Просмотреть</button>
+        </div>
+    </form>
+    <div class="add__preview hidden"></div>
+    <div class="loader">
+        <div class="book">
+            <div class="book__page"></div>
+            <div class="book__page"></div>
+            <div class="book__page"></div>
+        </div>
+        <div class="loading">Подождите, идёт загрузка файлов</div>
+    </div>
+</div>
