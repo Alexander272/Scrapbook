@@ -1,6 +1,6 @@
 module.exports = {
-    MONGODB_URL: process.env.MONGODB_URL,
+    MONGODB_URL: 'mongodb+srv://Alex:2fQd48Ea5if7KRgL@cluster0-gexu4.mongodb.net/photoAlbums',
     SESSION_SECRET: process.env.SESSION_SECRET,
     BASE_URL: process.env.BASE_URL,
-    CLARIFAI_KEY: process.env.CLARIFAI_KEY
+    CLARIFAI_KEY: '64484726be7f439297f3fd5b91d0d78c'
 }
